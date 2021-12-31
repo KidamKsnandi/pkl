@@ -1,5 +1,18 @@
 @extends('layouts.admin')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
+@endsection
+
+@section('js')
+    <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#wisata').DataTable();
+        });
+    </script>
+@endsection
+
 @section('content')
 <div class="content-header">
     <div class="container-fluid">
@@ -20,7 +33,8 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="wisata">
+                            <thead>
                             <tr>
                                 <th>Nomor</th>
                                 <th>Nama Wisata</th>
@@ -32,6 +46,8 @@
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
+                            </thead>
+                            <tbody>
                             @php $no=1; @endphp
                             @foreach($wisata as $data)
                             <tr>
@@ -54,6 +70,7 @@
                                 </td>
                             </tr>
                             @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>

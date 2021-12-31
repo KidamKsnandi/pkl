@@ -40,9 +40,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('/', [HomeController::class, 'index']);
     Route::resource('kategori', KategoriController::class);
     Route::resource('wisata', WisataController::class);
+    Route::get('galeri', [GaleriController::class, 'all']);
     Route::get('{wisata:slug}/galeri', [GaleriController::class, 'index']);
     Route::get('{wisata:slug}/galeri/create', [GaleriController::class, 'create']);
     Route::post('{wisata:slug}/galeri/store', [GaleriController::class, 'store']);
     Route::get('{wisata:slug}/galeri/edit/{id}', [GaleriController::class, 'edit']);
+    Route::get('{wisata:slug}/galeri/show/{id}', [GaleriController::class, 'show']);
+    Route::post('{wisata:slug}/galeri/edit/{id}/update', [GaleriController::class, 'update']);
+    Route::post('{wisata:slug}/galeri/delete/{id}', [GaleriController::class, 'destroy']);
 });
 

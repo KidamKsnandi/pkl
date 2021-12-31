@@ -16,4 +16,21 @@ class Galeri extends Model
     public function wisata() {
         return $this->belongsTo('App\Models\Wisata', 'id_wisata');
     }
+
+    public function galeri()
+    {
+        if ($this->gambar && file_exists(public_path('front/images/galeri/' . $this->gambar))) {
+            return asset('front/images/galeri/' . $this->gambar);
+        } else {
+            return asset('front/images/no_image.png');
+        }
+    }
+
+    public function deleteGaleri()
+    {
+        if ($this->gambar && file_exists(public_path('front/images/galeri/' . $this->gambar))) {
+            return unlink(public_path('front/images/galeri/' . $this->gambar));
+        }
+
+    }
 }

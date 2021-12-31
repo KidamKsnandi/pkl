@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="">Gambar</label>
                             <div class="input-group input-group-outline">
-                            <input type="text" name="gambar" class="form-control @error('gambar') is-invalid @enderror">
+                            <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror">
                             @error('gambar')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

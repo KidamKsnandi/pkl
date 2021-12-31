@@ -6,14 +6,17 @@ use App\Models\Galeri;
 use App\Models\Kategori;
 use App\Models\Wisata;
 use Illuminate\Http\Request;
+use Session;
 
 class GaleriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function all()
+    {
+        $galeri = Galeri::with('wisata')->get();
+        return view('admin.galeri.all', compact('galeri'));
+    }
+
+
     public function index(Wisata $wisata)
     {
         $wisata = Wisata::find($wisata->id);
@@ -41,14 +44,29 @@ class GaleriController extends Controller
     public function store(Request $request, Wisata $wisata)
     {
         $validated = $request->validate([
-            'gambar' => 'required',
+            'gambar' => 'required|image|max:2048',
         ]);
 
         $galeri = new Galeri();
         $galeri->id_wisata = $wisata->id;
-        $galeri->gambar = $request->gambar;
+        // upload cover
+        // Mengambil file yang diupload
+        $uploaded_cover = $request->file('gambar');
+        // mengambil extension file
+        $extension = $uploaded_cover->getClientOriginalExtension();
+        // membuat nama file random berikut extension
+        $filename = time() . '.' . $extension;
+        // menyimpan cover ke folder public/img
+        $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'front/images/galeri/';
+        $uploaded_cover->move($destinationPath, $filename);
+        // mengisi field cover di book dengan filename yang baru dibuat
+        $galeri->gambar = $filename;
         $galeri->save();
-        return redirect('admin/wisata');
+        Session::flash("flash_notification", [
+                        "level"=>"success",
+                        "message"=>"Berhasil Menyimpan Gambar di Galeri"
+                        ]);
+        return redirect('admin/galeri');
     }
 
     /**
@@ -57,9 +75,11 @@ class GaleriController extends Controller
      * @param  \App\Models\Galeri  $galeri
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Wisata $wisata, $id)
     {
-        //
+        $wisata = Wisata::find($wisata->id);
+        $galeri = Galeri::findOrFail($id);
+        return view('admin.galeri.show', compact('wisata', 'galeri'));
     }
 
     /**
@@ -71,7 +91,8 @@ class GaleriController extends Controller
     public function edit(Wisata $wisata, $id)
     {
         $wisata = Wisata::find($wisata->id);
-        $galeri = Wisata::findOrFail($id);
+        $galeri = Galeri::findOrFail($id);
+        return view('admin.galeri.edit', compact('wisata', 'galeri'));
     }
 
     /**
@@ -81,9 +102,28 @@ class GaleriController extends Controller
      * @param  \App\Models\Galeri  $galeri
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeri $galeri)
+    public function update(Request $request, Wisata $wisata, $id )
     {
-        //
+        $validated = $request->validate([
+            'gambar' => 'required',
+        ]);
+
+        $galeri = Galeri::findOrFail($id);
+        $galeri->id_wisata = $wisata->id;
+        // upload cover
+        if ($request->hasFile('gambar')) {
+            $galeri->deleteGaleri();
+            $image = $request->file('gambar');
+            $name = rand(1000, 9999) . $image->getClientOriginalName();
+            $image->move('front/images/galeri/', $name);
+            $galeri->gambar = $name;
+        }
+        $galeri->save();
+        Session::flash("flash_notification", [
+                        "level"=>"success",
+                        "message"=>"Berhasil Menyimpan Gambar di Galeri"
+                        ]);
+        return redirect('admin/galeri');
     }
 
     /**
@@ -92,8 +132,15 @@ class GaleriController extends Controller
      * @param  \App\Models\Galeri  $galeri
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Galeri $galeri)
+    public function destroy(Wisata $wisata, $id)
     {
-        //
+        $galeri = Galeri::findOrFail($id);
+        $galeri->delete();
+        $galeri->deleteGaleri();
+        Session::flash("flash_notification", [
+                        "level"=>"success",
+                        "message"=>"Berhasil Menghapus Gambar di Galeri"
+                        ]);
+        return redirect('admin/galeri');
     }
 }
