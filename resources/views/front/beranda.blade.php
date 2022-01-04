@@ -4,6 +4,11 @@
     @extends('layouts.main')
 <!-- End of /Section -->
 
+	@section('li')
+	@foreach ($katego as $data)
+		<li><a href="/beranda/{{$data->slug}}">{{ $data->nama_kategori }} </a></li>
+	@endforeach
+	@endsection
 
 	<!-- SLIDER Start
     ================================================== -->
@@ -13,9 +18,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div id="slider" class="nivoSlider">
-				    	<img src="front/images/slider.jpg" alt="" />
-				    	<img src="front/images/slider1.jpg" alt=""/>
-				    	<img src="front/images/slider2.jpg" alt="" />
+				    	<img src="{{ asset('front/images/slider.jpg')}}" alt="" />
+				    	<img src="{{ asset('front/images/slider1.jpg')}}" alt=""/>
+				    	<img src="{{ asset('front/images/slider2.jpg')}}" alt="" />
 					</div>	<!-- End of /.nivoslider -->
 				</div>	<!-- End of /.col-md-12 -->
 			</div>	<!-- End of /.row -->
@@ -34,54 +39,31 @@
 							<h2>Rekomendasi</h2>
 						</div>
 						<div class="row">
+						@foreach($wisata as $data)
+						@if($data->status == "Rekomendasi")
 						  	<div class="col-sm-6 col-md-4">
 							    <div class="thumbnail">
-							    	<a class="catagotie-head" href="blog-single.html">
-										<img src="front/images/category-image-1.jpg" alt="...">
-										<h3>Beef Steak</h3>
+							    	<a class="catagotie-head" href="/{{ $data->slug }}/detail">
+										<img src=" {{ $data->cover() }}" style="width:350px; height:220px;" alt="Cover">
+										<h3>{{$data->nama_wisata}}</h3>
 									</a>
+									({{$data->kategori->nama_kategori}})
 							      	<div class="caption">
-							        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
+									  <br>
+									  <p>Lokasi : {{ $data->lokasi }}</p>
+							        	<p><b>Harga Tiket</b> : @if($data->harga_tiket == "Gratis") {{ $data->harga_tiket }}
+                                                                @else {{ number_format($data->harga_tiket) }}
+                                                                @endif</p>
 							        	<p>
-							        		<a href="blog-single.html" class="btn btn-default btn-transparent" role="button">
-							        			<span>Check Items</span>
+							        		<a href="/{{ $data->slug }}/detail" class="btn btn-default btn-transparent" role="button">
+							        			<span>Lihat Detail</span>
 							        		</a>
 							        	</p>
 							      	</div>	<!-- End of /.caption -->
 							    </div>	<!-- End of /.thumbnail -->
 						  	</div>	<!-- End of /.col-sm-6 col-md-4 -->
-						  	<div class="col-sm-6 col-md-4">
-							    <div class="thumbnail">
-							    	<a class="catagotie-head" href="blog-single.html">
-										<img src="front/images/category-image-2.jpg" alt="...">
-										<h3>Miscellaneous</h3>
-									</a>
-							      	<div class="caption">
-							        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
-							        	<p>
-							        		<a href="blog-single.html" class="btn btn-default btn-transparent" role="button">
-							        			<span>Check Items</span>
-							        		</a>
-							        	</p>
-							      	</div>	<!-- End of /.caption -->
-							    </div>	<!-- End of /.thumbnail -->
-						  	</div>	<!-- End of /.col-sm-6 col-md-4 -->
-						  	<div class="col-sm-6 col-md-4">
-							    <div class="thumbnail">
-							    	<a class="catagotie-head" href="blog-single.html">
-										<img src="front/images/category-image-3.jpg" alt="...">
-										<h3>Elegant Apparel</h3>
-									</a>
-							      	<div class="caption">
-								        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
-								        <p>
-								        	<a href="blog-single.html" class="btn btn-default btn-transparent" role="button">
-								        		<span>Check Items</span>
-								        	</a>
-								        </p>
-								    </div>	<!-- End of /.caption -->
-							    </div>	<!-- End of /.thumbnail -->
-						  	</div>	<!-- End of /.col-sm-6 col-md-4 -->
+						@endif
+						@endforeach
 						</div>	<!-- End of /.row -->
 					</div>	<!-- End of /.block -->
 				</div>	<!-- End of /.col-md-12 -->
@@ -98,54 +80,31 @@
 							<h2>Populer</h2>
 						</div>
 						<div class="row">
-						  	<div class="col-sm-6 col-md-4">
+						@foreach($wisata as $data)
+						@if($data->status == "Populer")
+						  	<div class="col-sm-6 col-md-4"><br><br><br>
 							    <div class="thumbnail">
-							    	<a class="catagotie-head" href="blog-single.html">
-										<img src="front/images/category-image-1.jpg" alt="...">
-										<h3>Beef Steak</h3>
+							    	<a class="catagotie-head" href="/{{ $data->slug }}/detail">
+										<img src=" {{ $data->cover() }}" style="width:350px; height:220px;" alt="Cover">
+										<h5>{{$data->nama_wisata}}</h5>
 									</a>
+									({{$data->kategori->nama_kategori}})
 							      	<div class="caption">
-							        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
+									  <br>
+									  <p>Lokasi : {{ $data->lokasi }}</p>
+							        	<p><b>Harga Tiket</b> : @if($data->harga_tiket == "Gratis") {{ $data->harga_tiket }}
+                                                                @else {{ number_format($data->harga_tiket) }}
+                                                                @endif </p>
 							        	<p>
-							        		<a href="blog-single.html" class="btn btn-default btn-transparent" role="button">
-							        			<span>Check Items</span>
+							        		<a href="/{{ $data->slug }}/detail" class="btn btn-default btn-transparent" role="button">
+							        			<span>Lihat Detail</span>
 							        		</a>
 							        	</p>
 							      	</div>	<!-- End of /.caption -->
 							    </div>	<!-- End of /.thumbnail -->
 						  	</div>	<!-- End of /.col-sm-6 col-md-4 -->
-						  	<div class="col-sm-6 col-md-4">
-							    <div class="thumbnail">
-							    	<a class="catagotie-head" href="blog-single.html">
-										<img src="front/images/category-image-2.jpg" alt="...">
-										<h3>Miscellaneous</h3>
-									</a>
-							      	<div class="caption">
-							        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
-							        	<p>
-							        		<a href="blog-single.html" class="btn btn-default btn-transparent" role="button">
-							        			<span>Check Items</span>
-							        		</a>
-							        	</p>
-							      	</div>	<!-- End of /.caption -->
-							    </div>	<!-- End of /.thumbnail -->
-						  	</div>	<!-- End of /.col-sm-6 col-md-4 -->
-						  	<div class="col-sm-6 col-md-4">
-							    <div class="thumbnail">
-							    	<a class="catagotie-head" href="blog-single.html">
-										<img src="front/images/category-image-3.jpg" alt="...">
-										<h3>Elegant Apparel</h3>
-									</a>
-							      	<div class="caption">
-								        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
-								        <p>
-								        	<a href="blog-single.html" class="btn btn-default btn-transparent" role="button">
-								        		<span>Check Items</span>
-								        	</a>
-								        </p>
-								    </div>	<!-- End of /.caption -->
-							    </div>	<!-- End of /.thumbnail -->
-						  	</div>	<!-- End of /.col-sm-6 col-md-4 -->
+						@endif
+						@endforeach
 						</div>	<!-- End of /.row -->
 					</div>	<!-- End of /.block -->
 				</div>	<!-- End of /.col-md-12 -->

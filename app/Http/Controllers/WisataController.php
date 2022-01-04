@@ -41,7 +41,7 @@ class WisataController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_wisata' => 'required',
+            'nama_wisata' => 'required|unique:wisatas',
             'id_kategori' => 'required',
             'lokasi' => 'required',
             'deskripsi_wisata' => 'required',
@@ -62,17 +62,23 @@ class WisataController extends Controller
         $wisata->harga_tiket = $request->harga_tiket;
         }
         // upload cover
-        // Mengambil file yang diupload
-        $uploaded_cover = $request->file('cover');
-        // mengambil extension file
-        $extension = $uploaded_cover->getClientOriginalExtension();
-        // membuat nama file random berikut extension
-        $filename = time() . '.' . $extension;
-        // menyimpan cover ke folder public/img
-        $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'front/images/cover/';
-        $uploaded_cover->move($destinationPath, $filename);
-        // mengisi field cover di book dengan filename yang baru dibuat
-        $wisata->cover = $filename;
+        // // Mengambil file yang diupload
+        // $uploaded_cover = $request->file('cover');
+        // // mengambil extension file
+        // $extension = $uploaded_cover->getClientOriginalExtension();
+        // // membuat nama file random berikut extension
+        // $filename = time() . '.' . $extension;
+        // // menyimpan cover ke folder public/img
+        // $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'front/images/cover/';
+        // $uploaded_cover->move($destinationPath, $filename);
+        // // mengisi field cover di book dengan filename yang baru dibuat
+        // $wisata->cover = $filename;
+        if ($request->hasFile('cover')) {
+            $image = $request->file('cover');
+            $name = rand(1000, 9999) . $image->getClientOriginalName();
+            $image->move('front/images/cover/', $name);
+            $wisata->cover = $name;
+        }
         $wisata->status = $request->status;
         $wisata->save();
         Session::flash("flash_notification", [

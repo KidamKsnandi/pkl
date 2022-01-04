@@ -76,18 +76,15 @@
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav nav-main">
-		        	<li class="active"><a href="#">BERANDA</a></li>
-					<li><a href="products.html">OBJEK WISATA</a></li>
+		        	<li class="{{ Request::is('beranda')? "active":"" }}"><a href="/beranda">BERANDA</a></li>
+					<li class="{{ Request::is('objek-wisata')? "active":"" }}"><a href="/objek-wisata">OBJEK WISATA</a></li>
 					<li class="dropdown">
 						<a href="#">
 							KATEGORI
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-						   <li><a  href="#">Alam</a></li>
-						    <li><a  href="#">Bahari</a></li>
-						    <li><a  href="#">Budaya</a></li>
-						    <li><a  href="#">Buru</a></li>
+						   @yield('li')
 						</ul>
                     </li>
 

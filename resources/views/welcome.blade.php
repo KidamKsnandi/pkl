@@ -81,7 +81,11 @@
 							<h2>Pilih Sesuai Kategori :</h2>
 						</div>
 						<div class="row">
-                                <center><button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button></center>
+						@foreach($kategori as $data)
+							<center> <a href="beranda/{{$data->slug}}" class="btn btn-lg btn-default btn-block text-white">{{$data->nama_kategori}}</a> </center> <br>
+						@endforeach
+						    
+							<a href="beranda/" style="float: right;" class="btn btn-lg btn-default text-white"> Lewati <i class="fa fa-arrow-right"></i></a> </center>
 						</div>	<!-- End of /.row -->
 					</div>	<!-- End of /.block -->
 				</div>	<!-- End of /.col-md-12 -->

@@ -30,7 +30,7 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->wisata->nama_wisata }}</td>
                                 <td>{{ $data->wisata->kategori->nama_kategori }}</td>
-                                <td><img src=" {{ $data->galeri() }}" alt="" style="width:150px; height:150px;" alt="Gambar"></td>
+                                <td><img src=" {{ $data->galeri() }}" alt="" style="width:350px; height:300px;" alt="Gambar"></td>
                             </tr>
                             @endforeach
                         </table>

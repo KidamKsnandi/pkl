@@ -100,7 +100,7 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Nama</th>
+                    <th scope="col">Username</th>
                     <th scope="col">Email</th>
                   </tr>
                 </thead>

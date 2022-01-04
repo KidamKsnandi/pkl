@@ -12,7 +12,7 @@ class GaleriController extends Controller
 {
     public function all()
     {
-        $galeri = Galeri::with('wisata')->get();
+        $galeri = Galeri::with('wisata')->latest()->get();
         return view('admin.galeri.all', compact('galeri'));
     }
 
@@ -50,17 +50,23 @@ class GaleriController extends Controller
         $galeri = new Galeri();
         $galeri->id_wisata = $wisata->id;
         // upload cover
-        // Mengambil file yang diupload
-        $uploaded_cover = $request->file('gambar');
-        // mengambil extension file
-        $extension = $uploaded_cover->getClientOriginalExtension();
-        // membuat nama file random berikut extension
-        $filename = time() . '.' . $extension;
-        // menyimpan cover ke folder public/img
-        $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'front/images/galeri/';
-        $uploaded_cover->move($destinationPath, $filename);
-        // mengisi field cover di book dengan filename yang baru dibuat
-        $galeri->gambar = $filename;
+        // // Mengambil file yang diupload
+        // $uploaded_cover = $request->file('gambar');
+        // // mengambil extension file
+        // $extension = $uploaded_cover->getClientOriginalExtension();
+        // // membuat nama file random berikut extension
+        // $filename = time() . '.' . $extension;
+        // // menyimpan cover ke folder public/img
+        // $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'front/images/galeri/';
+        // $uploaded_cover->move($destinationPath, $filename);
+        // // mengisi field cover di book dengan filename yang baru dibuat
+        // $galeri->gambar = $filename;
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $name = rand(1000, 9999) . $image->getClientOriginalName();
+            $image->move('front/images/galeri/', $name);
+            $galeri->gambar = $name;
+        }
         $galeri->save();
         Session::flash("flash_notification", [
                         "level"=>"success",
@@ -132,7 +138,7 @@ class GaleriController extends Controller
      * @param  \App\Models\Galeri  $galeri
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Wisata $wisata, $id)
+    public function destroy($id)
     {
         $galeri = Galeri::findOrFail($id);
         $galeri->delete();

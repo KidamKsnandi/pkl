@@ -76,7 +76,7 @@
                             <label for="">Status</label>
                             <div class="input-group input-group-outline">
                             <select name="status" class="form-control">
-                                <option value="Normal">Status</option>
+                                <option value="Normal">Normal</option>
                                 <option value="Rekomendasi">Rekomendasi</option>
                                 <option value="Populer">Populer</option>
                             </select>
