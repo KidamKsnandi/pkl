@@ -43,7 +43,6 @@
     <!-- Topnav -->
     @include('layouts.partials.navbar')
     <!-- Header -->
-
     @yield('content')
      <div class="container-fluid mt-12">
     <!-- Footer -->
@@ -73,6 +72,7 @@
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{ asset('assets/js/argon.js')}}"></script>
+  @yield('ckeditor')
   @yield('js');
 </body>
 

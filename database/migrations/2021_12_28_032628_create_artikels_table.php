@@ -15,9 +15,12 @@ class CreateArtikelsTable extends Migration
     {
         Schema::create('artikels', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
+            $table->foreignId('id_user');
+            $table->string('judul')->unique();
+            $table->string('slug');
             $table->string('cover');
             $table->text('konten');
+            $table->string('slider');
             $table->timestamps();
         });
     }

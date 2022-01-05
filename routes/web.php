@@ -10,6 +10,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ArtikelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,8 @@ Route::get('objek-wisata/', [FrontController::class, 'objekwisata']);
 Route::get('objek-wisata/{kategori:slug}', [FrontController::class, 'wisatakategori']);
 Route::get('{wisata:slug}/detail', [FrontController::class, 'wisatadetail']);
 Route::get('{wisata:slug}/galeriwisata', [FrontController::class, 'wisatagaleri']);
-
+Route::get('artikel/', [FrontController::class, 'artikel']);
+Route::get('{artikel:slug}/selengkapnya', [FrontController::class, 'artikeldetail']);
 
 // Route Admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
@@ -47,6 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('kategori', KategoriController::class);
     Route::resource('wisata', WisataController::class);
     Route::resource('user', UserController::class);
+    Route::resource('artikel', ArtikelController::class);
     Route::get('galeri', [GaleriController::class, 'all']);
     Route::get('{wisata:slug}/galeri', [GaleriController::class, 'index']);
     Route::get('{wisata:slug}/galeri/create', [GaleriController::class, 'create']);

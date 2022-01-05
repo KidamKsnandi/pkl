@@ -18,9 +18,11 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div id="slider" class="nivoSlider">
-				    	<img src="{{ asset('front/images/slider.jpg')}}" alt="" />
-				    	<img src="{{ asset('front/images/slider1.jpg')}}" alt=""/>
-				    	<img src="{{ asset('front/images/slider2.jpg')}}" alt="" />
+                        @foreach($artikel as $data)
+                        @if($data->slider == "Ya")
+                        <a href="/{{ $data->slug }}/selengkapnya"><img src=" {{ $data->cover() }}" style="width:1180px; height:500px;" alt="Cover"></a>
+                        @endif
+                        @endforeach
 					</div>	<!-- End of /.nivoslider -->
 				</div>	<!-- End of /.col-md-12 -->
 			</div>	<!-- End of /.row -->
@@ -125,126 +127,3 @@
 		</div>	<!-- End of /.container -->
 	</section>	<!-- End of Section -->
     @endsection
-
-		<!-- PRODUCTS Start
-    ================================================== -->
-
-	{{-- <section id="products">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="products-heading">
-						<h2>NEW PRODUCTS</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="products">
-						<a href="single-product.html">
-							<img src="front/images/product-image.jpg" alt="">
-						</a>
-						<a href="single-product.html">
-							<h4>Amazing Italian Sauces</h4>
-						</a>
-						<p class="price">From: £69.99</p>
-						<a class="view-link shutter" href="#">
-							<i class="fa fa-plus-circle"></i>Add To Cart</a>
-					</div>	<!-- End of /.products -->
-				</div>	<!-- End of /.col-md-3 -->
-				<div class="col-md-3">
-					<div class="products">
-						<a href="single-product.html">
-							<img src="front/images/product-image-2.jpg" alt="">
-						</a>
-						<a href="single-product.html">
-							<h4>Amazing Italian Sauces</h4>
-						</a>
-						<p class="price">From: £69.99</p>
-						<a class="view-link shutter" href="#">
-							<i class="fa fa-plus-circle"></i>Add To Cart</a>
-					</div>	<!-- End of /.products -->
-				</div> <!-- End Of Col-md-3 -->
-				<div class="col-md-3">
-					<div class="products">
-						<a href="single-product.html">
-							<img src="front/images/product-image-3.jpg" alt="">
-						</a>
-						<a href="single-product.html">
-							<h4>Amazing Italian Sauces</h4>
-						</a>
-						<p class="price">From: £69.99</p>
-						<a class="view-link shutter" href="#">
-							<i class="fa fa-plus-circle"></i>Add To Cart</a>
-					</div>	<!-- End of /.products -->
-				</div> <!-- End Of /.Col-md-3 -->
-				<div class="col-md-3">
-					<div class="products">
-						<a href="single-product.html">
-							<img src="front/images/product-image-4.jpg" alt="">
-						</a>
-						<a href="single-product.html">
-							<h4>Amazing Italian Sauces</h4>
-						</a>
-						<p class="price">From: £69.99</p>
-						<a class="view-link shutter" href="#">
-							<i class="fa fa-plus-circle"></i>Add To Cart</a>
-					</div>	<!-- End of /.products -->
-				</div> <!-- End Of /.Col-md-3 -->
-				<div class="col-md-3">
-					<div class="products">
-						<a href="single-product.html">
-							<img src="front/images/product-image-5.jpg" alt="">
-						</a>
-						<a href="single-product.html">
-							<h4>Amazing Italian Sauces</h4>
-						</a>
-						<p class="price">From: £69.99</p>
-						<a class="view-link shutter" href="#">
-							<i class="fa fa-plus-circle"></i>Add To Cart</a>
-					</div>	<!-- End of /.products -->
-				</div> <!-- End Of /.Col-md-3 -->
-				<div class="col-md-3">
-					<div class="products">
-						<a href="single-product.html">
-							<img src="front/images/product-image-6.jpg" alt="">
-						</a>
-						<a href="single-product.html">
-							<h4>Amazing Italian Sauces</h4>
-						</a>
-						<p class="price">From: £69.99</p>
-						<a class="view-link shutter" href="#">
-							<i class="fa fa-plus-circle"></i>Add To Cart</a>
-					</div>	<!-- End of /.products -->
-				</div> <!-- End Of /.Col-md-3 -->
-				<div class="col-md-3">
-					<div class="products">
-						<a href="single-product.html">
-							<img src="front/images/product-image-7.jpg" alt="">
-						</a>
-						<a href="single-product.html">
-							<h4>Amazing Italian Sauces</h4>
-						</a>
-						<p class="price">From: £69.99</p>
-						<a class="view-link shutter" href="#">
-							<i class="fa fa-plus-circle"></i>Add To Cart</a>
-					</div>	<!-- End of /.products -->
-				</div> <!-- End Of /.Col-md-3 -->
-				<div class="col-md-3">
-					<div class="products">
-						<a href="single-product.html">
-							<img src="front/images/product-image-8.jpg" alt="">
-						</a>
-						<a href="single-product.html">
-							<h4>Amazing Italian Sauces</h4>
-						</a>
-						<p class="price">From: £69.99</p>
-						<div >
-							<a class="view-link shutter" href="#">
-							<i class="fa fa-plus-circle"></i>Add To Cart</a>
-						</div>
-					</div>	<!-- End of /.products -->
-				</div> <!-- End Of /.Col-md-3 -->
-			</div>	<!-- End of /.row -->
-		</div>	<!-- End of /.container -->
-	</section>	<!-- End of Section --> --}}

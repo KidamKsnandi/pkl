@@ -1,7 +1,7 @@
 <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <h1 class="text-white"><span class="text-success">Admin</span>&nbsp;Wisata</h1>
+            <h1 class="text-white"><span class="text-success">Admin</span>&nbsp; <a href="/">Wisata</a></h1>
           <!-- Navbar links -->
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">

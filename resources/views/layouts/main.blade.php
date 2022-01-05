@@ -41,7 +41,7 @@
 </head>
   <!-- LOGO Start
     ================================================== -->
-    
+
     <header>
 		<div class="container">
 			<div class="row">
@@ -78,6 +78,7 @@
 		      	<ul class="nav navbar-nav nav-main">
 		        	<li class="{{ Request::is('beranda')? "active":"" }}"><a href="/beranda">BERANDA</a></li>
 					<li class="{{ Request::is('objek-wisata')? "active":"" }}"><a href="/objek-wisata">OBJEK WISATA</a></li>
+                    @if(!Request::is('artikel')? "active":"")
 					<li class="dropdown">
 						<a href="#">
 							KATEGORI
@@ -87,6 +88,8 @@
 						   @yield('li')
 						</ul>
                     </li>
+                    @endif
+                    <li class="{{ Request::is('artikel')? "active":"" }}"><a href="/artikel">ARTIKEL</a></li>
 
 
 

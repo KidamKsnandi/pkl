@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Session;
 use Str;
 use Illuminate\Http\Request;
@@ -136,4 +137,5 @@ class UserController extends Controller
                         ]);
         return redirect()->route('user.index');
     }
+
 }

@@ -1,4 +1,16 @@
 @extends('layouts.admin')
+
+@section('ckeditor')
+    <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+    <script>
+    var deskripsi_wisata = document.getElementById("deskripsi_wisata");
+        CKEDITOR.replace(deskripsi_wisata,{
+        language:'en-gb'
+    });
+    CKEDITOR.config.allowedContent = true;
+    </script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -43,7 +55,7 @@
                         <div class="form-group">
                             <label for="">Deskripsi Wisata</label>
                             <div class="input-group input-group-outline">
-                            <textarea name="deskripsi_wisata" class="form-control @error('deskripsi_wisata') is-invalid @enderror"></textarea>
+                            <textarea name="deskripsi_wisata" id="deskripsi_wisata" rows="30" cols="50" class="form-control @error('deskripsi_wisata') is-invalid @enderror"></textarea>
                             @error('deskripsi_wisata')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -76,6 +88,7 @@
                             <label for="">Status</label>
                             <div class="input-group input-group-outline">
                             <select name="status" class="form-control">
+                                <option value="">-- Status --</option>
                                 <option value="Normal">Normal</option>
                                 <option value="Rekomendasi">Rekomendasi</option>
                                 <option value="Populer">Populer</option>

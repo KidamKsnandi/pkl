@@ -17,7 +17,7 @@
         <p class="card-text">Kategori : {{ $wisata->kategori->nama_kategori }}</p>
         <p class="card-text">Lokasi : {{ $wisata->lokasi }}</p> <br>
         <h5>Deskripsi :</h5>
-        <p class="card-text">{{ $wisata->deskripsi_wisata }}</p>
+        <p class="card-text">{!! $wisata->deskripsi_wisata !!}</p>
       </div>
     </div>
   </div>

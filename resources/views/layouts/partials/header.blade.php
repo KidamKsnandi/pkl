@@ -1,4 +1,6 @@
-	<!-- Fonts -->
+<!doctype html>
+<html lang="en">
+<!-- Fonts -->
 	{{-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700' rel='stylesheet' type='text/css'> --}}
 
@@ -30,3 +32,4 @@
 	<script src="{{ asset('front/js/jquery.scrollUp.min.js')}}"></script>
 	<script src="{{ asset('front/js/main.js')}}" type="text/javascript"></script>
 
+</html>
