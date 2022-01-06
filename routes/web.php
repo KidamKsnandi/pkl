@@ -31,6 +31,8 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/logout', [Auth\LoginController::class, 'logout']);
+
 // Route Pengunjung
 Route::get('/', [FrontController::class, 'welcome']);
 Route::get('beranda/{kategori:slug}', [FrontController::class, 'berandakategori']);

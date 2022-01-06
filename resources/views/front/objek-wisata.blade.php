@@ -18,8 +18,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="block">
-						<div class="products-heading">
-							<h2>OBJEK WISATA BANDUNG</h2>
+						<div class="products-heading"><?php error_reporting(error_reporting() & ~E_NOTICE); ?>
+							<h2 style="text-transform: uppercase;">OBJEK WISATA BANDUNG @if($kagori) {{ $kagori->nama_kategori }} @endif</h2>
 						</div>
 						<div class="row">
 						@foreach($wisata as $data)

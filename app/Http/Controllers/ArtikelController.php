@@ -88,7 +88,15 @@ class ArtikelController extends Controller
     public function edit($id)
     {
         $artikel = Artikel::findOrFail($id);
-        return view('admin.artikel.edit', compact('artikel'));
+        if(Auth::user()->id == "1" || $artikel->id_user == Auth::user()->id) {
+            return view('admin.artikel.edit', compact('artikel'));
+        } else {
+        Session::flash("flash_notification", [
+                        "level"=>"danger",
+                        "message"=>"Artikel Ini bukan milik anda"
+                        ]);
+        return redirect()->route('artikel.index');
+        }
     }
 
     /**
@@ -137,12 +145,20 @@ class ArtikelController extends Controller
     public function destroy($id)
     {
         $artikel = Artikel::findOrFail($id);
+        if(Auth::user()->id == "1" || $artikel->id_user == Auth::user()->id) {
         $artikel->delete();
         $artikel->deleteCover();
         Session::flash("flash_notification", [
                         "level"=>"success",
-                        "message"=>"Berhasil Menghapus Gambar di artikel"
+                        "message"=>"Berhasil Menghapus Artikel"
                         ]);
         return redirect()->route('artikel.index');
+        } else {
+        Session::flash("flash_notification", [
+                        "level"=>"danger",
+                        "message"=>"Artikel Ini bukan milik anda"
+                        ]);
+        return redirect()->route('artikel.index');
+        }
     }
 }

@@ -38,10 +38,11 @@ class FrontController extends Controller
     }
 
     public function wisatakategori(Kategori $kategori) {
+        $kagori = Kategori::find($kategori->id);
         $katego = Kategori::all();
         $artikel = Artikel::with('user')->get();
         $wisata = Wisata::where('id_kategori', $kategori->id)->get();
-        return view('front/objek-wisata', compact('wisata', 'katego', 'artikel'));
+        return view('front/objek-wisata', compact('wisata', 'katego', 'artikel', 'kagori'));
     }
 
     public function wisatadetail(Wisata $wisata) {

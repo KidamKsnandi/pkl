@@ -44,7 +44,7 @@ class WisataController extends Controller
             'nama_wisata' => 'required|unique:wisatas',
             'id_kategori' => 'required',
             'lokasi' => 'required',
-            'deskripsi_wisata' => 'required',
+            'deskripsi_wisata' => 'required|min:100',
             'harga_tiket' => 'required',
             'cover' => 'required|image|max:2048',
         ]);
@@ -125,7 +125,7 @@ class WisataController extends Controller
             'nama_wisata' => 'required',
             'id_kategori' => 'required',
             'lokasi' => 'required',
-            'deskripsi_wisata' => 'required',
+            'deskripsi_wisata' => 'required|min:100',
             'harga_tiket' => 'required|alpha_num|max:10',
         ]);
 
