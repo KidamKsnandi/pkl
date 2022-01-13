@@ -47,16 +47,24 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users'
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6',
+            'role' => 'required'
         ]);
 
-        $user = new user();
+        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make('admin123');
-        $adminRole = Role::where('name', 'admin')->first();
+        $user->password = Hash::make($request->password);
         $user->save();
+        $authorRole = Role::where('name', 'author')->first();
+        $adminRole = Role::where('name', 'admin')->first();
+        if($request->role == "Admin") {
         $user->attachRole($adminRole);
+        }elseif($request->role == "Author") {
+        $user->attachRole($authorRole);
+        }
         Session::flash("flash_notification", [
                     "level"=>"success",
                     "message"=>"Berhasil Menyimpan $user->name"
@@ -101,7 +109,8 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'password' => ['required', 'string', 'min:8'],
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6',
         ]);
 
         $user = User::findOrFail($id);
@@ -116,7 +125,11 @@ class UserController extends Controller
         if ( Auth::user()->id == "1" ) {
             return redirect()->route('user.index');
         } else {
+            if(Auth::user()->hasRole('admin')) {
             return redirect('admin');
+            }else if(Auth::user()->hasRole('author')) {
+            return redirect('author');
+            }
         }
     }
 
@@ -133,7 +146,7 @@ class UserController extends Controller
         $user->delete();
         Session::flash("flash_notification", [
                         "level"=>"success",
-                        "message"=>"Berhasil Menghapus Admin $user->name"
+                        "message"=>"Berhasil Menghapus User $user->name"
                         ]);
         return redirect()->route('user.index');
     }

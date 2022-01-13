@@ -6,9 +6,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                    <a href="/admin/kategori" class="fa fa-arrow-left btn btn-secondry">Kembali</a>
+                    <h3 class="col-sm-10">Data Galeri {{ $wisata->nama_wisata }}</h3>
+                    <a href="/admin/kategori" class="fa fa-arrow-left btn btn-secondry" class="float:right;">Kembali</a>
                     </div>
-                    <h3>Data Galeri {{ $wisata->nama_wisata }}</h3>
 
 
                 </div>

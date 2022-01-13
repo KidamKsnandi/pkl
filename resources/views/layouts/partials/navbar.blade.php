@@ -1,7 +1,11 @@
 <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <h1 class="text-white"><span class="text-success">Admin</span>&nbsp; <a href="/">Wisata</a></h1>
+            @if(Auth::user()->hasRole('admin'))
+            <h1 class="text-white"><span class="text-success">Admin</span>&nbsp;<a href="/">Wisata</a></h1>
+            @elseif(Auth::user()->hasRole('author'))
+            <h1 class="text-white"><span class="text-success">Author</span>&nbsp;<a href="/">Wisata</a></h1>
+            @endif
           <!-- Navbar links -->
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">
@@ -31,7 +35,11 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
+                @if(Auth::user()->hasRole('admin'))
                  <a href="/admin/{{ Auth::user()->id }}/profile" class="dropdown-item">
+                @elseif(Auth::user()->hasRole('author'))
+                <a href="/author/{{ Auth::user()->id }}/profile" class="dropdown-item">
+                @endif
                   <i class="ni ni-single-02"></i>
                   <span>My profile</span>
                 </a>

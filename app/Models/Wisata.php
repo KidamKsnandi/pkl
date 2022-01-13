@@ -10,9 +10,7 @@ class Wisata extends Model
 {
     use HasFactory;
 
-    protected $visible = ['id_kategori','nama_wisata','slug', 'lokasi', 'deskripsi_wisata',
-                            'harga_tiket', 'cover', 'status'];
-    protected $fillable = ['id_kategori','nama_wisata','slug', 'lokasi', 'deskripsi_wisata',
+    protected $fillable = ['id_kategori','nama_wisata', 'lokasi', 'deskripsi_wisata',
                             'harga_tiket', 'cover', 'status'];
     public $timestamps = true;
 

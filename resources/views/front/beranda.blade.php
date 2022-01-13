@@ -20,7 +20,7 @@
 					<div id="slider" class="nivoSlider">
                         @foreach($artikel as $data)
                         @if($data->slider == "Ya")
-                        <a href="/{{ $data->slug }}/selengkapnya"><img src=" {{ $data->cover() }}" style="width:1180px; height:500px;" alt="Cover"></a>
+                        <a href="/{{ $data->slug }}/selengkapnya"><img src=" {{ $data->cover() }}" style="width:1180px; height:500px; " alt="Cover"></a>
                         @endif
                         @endforeach
 					</div>	<!-- End of /.nivoslider -->

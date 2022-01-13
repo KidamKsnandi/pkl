@@ -18,9 +18,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                    <a href="/admin/artikel" class="fa fa-arrow-left btn btn-secondry">Kembali</a>
+                        <h3 class="col-sm-10">Data Artikel</h3>
+                    <a href="/admin/artikel" class="fa fa-arrow-left btn btn-secondary">&nbsp;Kembali</a>
                     </div>
-                    <h3>Data Artikel</h3>
+
 
 
                 </div>
@@ -58,16 +59,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Slider</label>
-                            <div class="input-group input-group-outline">
-                            <select name="slider" class="form-control">
-                                <option value="">--Slider--</option>
-                                <option value="Ya">Ya</option>
-                                <option value="Tidak">Tidak</option>
-                            </select>
                             </div>
                         </div>
                         <div class="form-group mt-4">

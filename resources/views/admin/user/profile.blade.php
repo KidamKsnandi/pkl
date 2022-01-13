@@ -44,6 +44,16 @@
                         <input type="email" id="input-email" class="form-control" placeholder="Email" value="{{ $user->email }}" readonly>
                       </div>
                     </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Role</label>
+                        @if($user->hasRole('admin'))
+                        <input type="text" id="input-username" class="form-control" placeholder="Role" value="Admin" readonly>
+                        @elseif($user->hasRole('author'))
+                        <input type="text" id="input-username" class="form-control" placeholder="Role" value="Author" readonly>
+                        @endif
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <hr class="my-4" />

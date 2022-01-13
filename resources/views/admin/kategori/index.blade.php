@@ -18,7 +18,6 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-1o">
-                <h2 class="m-0">Data Kategori</h2>
             </div>
         </div>
     </div>
@@ -29,6 +28,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
+                    <h2 class="m-0">Data Kategori</h2>
                     <a href="{{route('kategori.create')}}" class="btn btn-sm btn-info float-right text-white">Tambah Data Kategori</a>
                 </div>
                 <div class="card-body">

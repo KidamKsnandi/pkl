@@ -61,18 +61,6 @@ class WisataController extends Controller
         } else {
         $wisata->harga_tiket = $request->harga_tiket;
         }
-        // upload cover
-        // // Mengambil file yang diupload
-        // $uploaded_cover = $request->file('cover');
-        // // mengambil extension file
-        // $extension = $uploaded_cover->getClientOriginalExtension();
-        // // membuat nama file random berikut extension
-        // $filename = time() . '.' . $extension;
-        // // menyimpan cover ke folder public/img
-        // $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'front/images/cover/';
-        // $uploaded_cover->move($destinationPath, $filename);
-        // // mengisi field cover di book dengan filename yang baru dibuat
-        // $wisata->cover = $filename;
         if ($request->hasFile('cover')) {
             $image = $request->file('cover');
             $name = rand(1000, 9999) . $image->getClientOriginalName();

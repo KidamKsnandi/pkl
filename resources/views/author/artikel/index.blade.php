@@ -8,7 +8,7 @@
     <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#wisata').DataTable();
+            $('#artikel').DataTable();
         });
     </script>
 @endsection
@@ -18,6 +18,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-1o">
+                <h2 class="m-0">Data Artikel</h2>
             </div>
         </div>
     </div>
@@ -28,43 +29,36 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="m-0">Data Wisata Bandung</h2>
-                    <a href="{{route('wisata.create')}}" class="btn btn-sm btn-info float-right text-white">Tambah Data Wisata</a>
+                    <a href="{{route('artikel.create')}}" class="btn btn-sm btn-info float-right text-white">Tambah Data artikel</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table" id="wisata">
+                        <table class="table" id="artikel">
                             <thead>
                             <tr>
                                 <th>Nomor</th>
-                                <th>Nama Wisata</th>
-                                <th>Kategori Wisata</th>
-                                <th>Lokasi</th>
-                                <th>Deskripsi Kategori</th>
-                                <th>Harga Tiket</th>
+                                <th>Judul Artikel</th>
                                 <th>Cover</th>
-                                <th>Status</th>
+                                <th>Konten</th>
+                                <td>Penulis</td>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php $no=1; @endphp
-                            @foreach($wisata as $data)
+                            @foreach($artikel as $data)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $data->nama_wisata }}</td>
-                                <td>{{ $data->kategori->nama_kategori }}</td>
-                                <td>{{ $data->lokasi }}</td>
-                                <td>Deskripsi Wisata {{ $data->nama_wisata }}</td>
-                                <td>{{ $data->harga_tiket }}</td>
+                                <td>{{ $data->judul }}</td>
                                 <td><img src="{{$data->cover()}}" alt="" style="width:150px; height:150px;" alt="Cover"></td>
-                                <td>{{ $data->status }}</td>
+                                <td>Konten {{ $data->judul }}</td>
+                                <td>{{ $data->user->name }}</td>
                                 <td>
-                                    <form action="{{ route('wisata.destroy', $data->id) }}" method="POST">
+                                    <form action="{{ route('artikel.destroy', $data->id) }}" method="POST">
                                         @method('delete')
                                         @csrf
-                                        <a href="{{ route('wisata.edit', $data->id) }}" class="btn btn-outline-info">Edit</a>
-                                        <a href="{{ $data->slug }}/galeri" class="btn btn-outline-warning">Lihat Galeri</a>
+                                        <a href="{{ route('artikel.edit', $data->id) }}" class="btn btn-outline-info">Edit</a>
+                                        <a href="{{ route('artikel.show', $data->id) }}" class="btn btn-outline-warning">Show</a>
                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')">Hapus</button>
                                     </form>
                                 </td>

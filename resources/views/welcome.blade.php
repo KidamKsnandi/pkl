@@ -14,6 +14,8 @@
     <!-- Nucleo Icons -->
     <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/nucleo/css/nucleo.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
@@ -84,7 +86,7 @@
 						@foreach($kategori as $data)
 							<center> <a href="beranda/{{$data->slug}}" class="btn btn-lg btn-default btn-block text-white">{{$data->nama_kategori}}</a> </center> <br>
 						@endforeach
-						    
+
 							<a href="beranda/" style="float: right;" class="btn btn-lg btn-default text-white"> Lewati <i class="fa fa-arrow-right"></i></a> </center>
 						</div>	<!-- End of /.row -->
 					</div>	<!-- End of /.block -->

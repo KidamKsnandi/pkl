@@ -22,6 +22,11 @@ class UserSeeder extends Seeder
         $adminRole->display_name = "Administrator";
         $adminRole->save();
 
+        $authorRole = new Role();
+        $authorRole->name = "author";
+        $authorRole->display_name = "Author";
+        $authorRole->save();
+
         // Membuat Sample User
         $admin = new User();
         $admin->name = 'Admin Penentuan Wisata';

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\WisataController;
@@ -31,7 +32,7 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/logout', [Auth\LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 // Route Pengunjung
 Route::get('/', [FrontController::class, 'welcome']);
@@ -51,7 +52,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('kategori', KategoriController::class);
     Route::resource('wisata', WisataController::class);
     Route::resource('user', UserController::class);
-    Route::resource('artikel', ArtikelController::class);
+    Route::get('article', [HomeController::class, 'artikel']);
+     Route::get('article/lihat/{id}', [HomeController::class, 'lihat']);
+    Route::post('article/lihat/{id}/update', [HomeController::class, 'update']);
+    Route::post('article/delete/{id}', [HomeController::class, 'destroy']);
     Route::get('galeri', [GaleriController::class, 'all']);
     Route::get('{wisata:slug}/galeri', [GaleriController::class, 'index']);
     Route::get('{wisata:slug}/galeri/create', [GaleriController::class, 'create']);
@@ -62,3 +66,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('{wisata:slug}/galeri/delete/{id}', [GaleriController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'author', 'middleware' => ['auth', 'role:author']], function() {
+    Route::get('/', [HomeController::class, 'index2']);
+    Route::get('{id}/profile', [UserController::class, 'profile']);
+    Route::resource('artikel', ArtikelController::class);
+});
+
+Route::resource('user', UserController::class);

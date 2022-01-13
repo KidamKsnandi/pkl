@@ -7,22 +7,6 @@
 	<!-- SLIDER Start
     ================================================== -->
         @section('content')
-	<section id="slider-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div id="slider" class="nivoSlider">
-                        @foreach($artikel as $data)
-                        @if($data->slider == "Ya")
-                        <a href="{{ $data->slug }}/selengkapnya"><img src=" {{ $data->cover() }}" style="width:1180px; height:500px;" alt="Cover"></a>
-                        @endif
-                        @endforeach
-					</div>	<!-- End of /.nivoslider -->
-				</div>	<!-- End of /.col-md-12 -->
-			</div>	<!-- End of /.row -->
-		</div>	<!-- End of /.container -->
-	</section> <!-- End of Section -->
-
 	<!-- CATAGORIE Start
     ================================================== -->
 
@@ -46,7 +30,9 @@
                             <div class="card-body">
                                 <h2 class="card-title">{{$data->judul}}</h2>
                             </a>
-                                <p class="card-text">Penulis : {{ $data->user->name }}</p> <br><br><br>
+                                <p class="card-text">Penulis : {{ $data->user->name }} <br>
+                                {!! substr($data->konten,0,200) !!}....</p>
+
                             <a href="/{{ $data->slug }}/selengkapnya" class="btn btn-default btn-transparent" role="button">
                                 <span>Lihat Selengkapnya...</span>
                             </a>

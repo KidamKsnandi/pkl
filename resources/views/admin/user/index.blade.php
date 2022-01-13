@@ -18,7 +18,6 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-1o">
-                <h2 class="m-0">Data User</h2>
             </div>
         </div>
     </div>
@@ -29,7 +28,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{route('user.create')}}" class="btn btn-sm btn-info float-right text-white">Tambah Data User Admin</a>
+                    <h2 class="m-0">Data User</h2>
+                    <a href="{{route('user.create')}}" class="btn btn-sm btn-info float-right text-white">Tambah Data User</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -39,6 +39,7 @@
                                 <th>Nomor</th>
                                 <th>Username</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -50,6 +51,11 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->name }}</td>
                                 <td>{{ $data->email }}</td>
+                                @if($data->hasRole('admin'))
+                                <td>Admin</td>
+                                @elseif($data->hasRole('author'))
+                                <td>Author</td>
+                                @endif
                                 <td>
                                     <form action="{{ route('user.destroy', $data->id) }}" method="POST">
                                         @method('delete')

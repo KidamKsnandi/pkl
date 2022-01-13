@@ -18,7 +18,7 @@ class ArtikelController extends Controller
     public function index()
     {
         $artikel = Artikel::with('user')->get();
-        return view('admin.artikel.index', compact('artikel'));
+        return view('author.artikel.index', compact('artikel'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        return view('admin.artikel.create');
+        return view('author.artikel.create');
     }
 
     /**
@@ -43,7 +43,6 @@ class ArtikelController extends Controller
             'judul' => 'required|unique:artikels',
             'cover' => 'required|image|max:2048',
             'konten' => 'required|min:200',
-            'slider' => 'required'
         ]);
 
         $artikel = new Artikel();
@@ -58,7 +57,7 @@ class ArtikelController extends Controller
             $artikel->cover = $name;
         }
         $artikel->konten = $request->konten;
-        $artikel->slider = $request->slider;
+        $artikel->slider = "Tidak";
         $artikel->save();
         Session::flash("flash_notification", [
                         "level"=>"success",
@@ -76,7 +75,7 @@ class ArtikelController extends Controller
     public function show($id)
     {
         $artikel = Artikel::findOrFail($id);
-        return view('admin.artikel.show', compact('artikel'));
+        return view('author.artikel.show', compact('artikel'));
     }
 
     /**
@@ -89,7 +88,7 @@ class ArtikelController extends Controller
     {
         $artikel = Artikel::findOrFail($id);
         if(Auth::user()->id == "1" || $artikel->id_user == Auth::user()->id) {
-            return view('admin.artikel.edit', compact('artikel'));
+            return view('author.artikel.edit', compact('artikel'));
         } else {
         Session::flash("flash_notification", [
                         "level"=>"danger",
@@ -111,7 +110,6 @@ class ArtikelController extends Controller
         $request->validate([
             'judul' => 'required',
             'konten' => 'required|min:200',
-            'slider' => 'required'
         ]);
 
         $artikel = Artikel::findOrFail($id);
@@ -127,7 +125,7 @@ class ArtikelController extends Controller
             $artikel->cover = $name;
         }
         $artikel->konten = $request->konten;
-        $artikel->slider = $request->slider;
+        $artikel->slider = "Tidak";
         $artikel->save();
         Session::flash("flash_notification", [
                         "level"=>"success",

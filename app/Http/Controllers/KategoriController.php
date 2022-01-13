@@ -42,16 +42,25 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|unique:kategoris',
             'deskripsi_kategori' => 'required'
         ]);
-
-        $kategori = new Kategori();
-        $kategori->nama_kategori = $request->nama_kategori;
-        $slug = Str::slug($kategori->nama_kategori);
-        $kategori->slug = $slug;
-        $kategori->deskripsi_kategori = $request->deskripsi_kategori;
-        $kategori->save();
+        // $kategori = new Kategori();
+        // $kategori->nama_kategori = $request->nama_kategori;
+        // $slug = Str::slug($kategori->nama_kategori);
+        // $kategori->slug = $slug;
+        // $kategori->deskripsi_kategori = $request->deskripsi_kategori;
+        // $kategori->save();
+        if (is_countable($request['nama_kategori']) && count($request['nama_kategori']) > 0 ) {
+            foreach($request['nama_kategori'] as $item => $value) {
+                $data = array(
+                    'nama_kategori' => $request['nama_kategori'][$item],
+                    'slug' => Str::slug($request['nama_kategori'][$item]),
+                    'deskripsi_kategori' => $request['deskripsi_kategori'][$item]
+                );
+                Kategori::create($data);
+            }
+        }
         Session::flash("flash_notification", [
                     "level"=>"success",
-                    "message"=>"Berhasil Menyimpan $kategori->nama_kategori"
+                    "message"=>"Berhasil Menyimpan Kategori Baru"
                     ]);
         return redirect()->route('kategori.index');
     }

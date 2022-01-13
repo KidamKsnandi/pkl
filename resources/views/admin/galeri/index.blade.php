@@ -5,7 +5,6 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-1o">
-                <h2 class="m-0">Galeri {{ $wisata->nama_wisata }}</h2>
             </div>
         </div>
     </div>
@@ -16,6 +15,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
+                    <h2 class="m-0">Galeri {{ $wisata->nama_wisata }}</h2>
                     <a href="galeri/create" class="btn btn-sm btn-info float-right text-white">Tambah Data Galeri</a>
                 </div>
                 <div class="card-body">

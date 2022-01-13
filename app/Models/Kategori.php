@@ -10,8 +10,7 @@ class Kategori extends Model
 {
     use HasFactory;
 
-    protected $visible = ['nama_kategori', 'deskripsi_kategori'];
-    protected $fillable = ['nama_kategori', 'deskripsi_kategori'];
+    protected $fillable = ['nama_kategori', 'slug', 'deskripsi_kategori'];
     public $timestamps = true;
 
     public function wisata() {

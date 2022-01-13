@@ -18,7 +18,6 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-1o">
-                <h2 class="m-0">Data Artikel</h2>
             </div>
         </div>
     </div>
@@ -29,7 +28,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{route('artikel.create')}}" class="btn btn-sm btn-info float-right text-white">Tambah Data artikel</a>
+                    <h2 class="m-0">Data Artikel</h2>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -54,11 +53,9 @@
                                 <td>Konten {{ $data->judul }}</td>
                                 <td>{{ $data->user->name }}</td>
                                 <td>
-                                    <form action="{{ route('artikel.destroy', $data->id) }}" method="POST">
-                                        @method('delete')
+                                    <form action="article/delete/{{ $data->id }}" method="POST">
                                         @csrf
-                                        <a href="{{ route('artikel.edit', $data->id) }}" class="btn btn-outline-info">Edit</a>
-                                        <a href="{{ route('artikel.show', $data->id) }}" class="btn btn-outline-warning">Show</a>
+                                        <a href="article/lihat/{{ $data->id }}" class="btn btn-outline-warning">Lihat</a>
                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')">Hapus</button>
                                     </form>
                                 </td>

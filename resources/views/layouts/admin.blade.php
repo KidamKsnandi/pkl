@@ -32,7 +32,7 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/argon.css') }}" type="text/css">
-  @yield('css');
+  @yield('css')
 </head>
 
 <body>
@@ -72,8 +72,9 @@
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{ asset('assets/js/argon.js')}}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
   @yield('ckeditor')
-  @yield('js');
+  @yield('js')
 </body>
 
 </html>
